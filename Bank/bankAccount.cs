@@ -17,7 +17,7 @@ namespace Bank
         }
 
         //propriedades - Encapsulamento
-        public string CustomerName 
+        public string CustomerName
         {
             get { return m_customerName; } 
         }
@@ -26,6 +26,11 @@ namespace Bank
             get { return m_balance; }
         }
         //metodos da classe
+
+        /// <summary>
+        /// Valor de Débito Adicionado
+        /// </summary>
+        /// <param name="amount">Quantidade de Débito</param>
         public void Debit(double amount) 
         {
             if (amount > m_balance) 
@@ -36,11 +41,20 @@ namespace Bank
             {
                 throw new ArgumentOutOfRangeException("amount");
             }
-            m_balance += amount;
+            m_balance -= amount;
         }
+
+        /// <summary>
+        /// Valor de Crédito Adicionado
+        /// </summary>
+        /// <param name="amount">Quantidade de Crédito</param>
         public void Credit(double amount) 
         {
-            if (amount < 0) 
+            if (amount > m_balance) 
+            {
+                throw new ArgumentOutOfRangeException("amount");
+            }
+            if (amount < 0)
             {
                 throw new ArgumentOutOfRangeException("amount");
             }
